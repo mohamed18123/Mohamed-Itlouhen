@@ -32,7 +32,7 @@ body {
     cursor: pointer;
     overflow: hidden;
     border: 1px solid var(--light) ;
-    box-shadow: 
+    box-shadow:
     0 15px 35px rgb(255, 255, 255), /* ظل خارجي */
     inset 0 0 10px rgba(255, 255, 255, 0.3); /* ظل داخلي */
     animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;

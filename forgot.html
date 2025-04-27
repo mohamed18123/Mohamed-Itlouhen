@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réinitialisation VIP</title>
+    <title>Réinitialisation Mots de passe</title>
     <link rel="stylesheet" href="forgot.css">
     <script src="forgot.js"></script>
 </head>
 <body>
+  <div class="base">
     <div class="container">
         <h1>Réinitialisation Mot de passe </h1>
         
         <form id="resetForm">
             <div class="form-group">
-                <input type="email" id="email" name="email" placeholder=" ">
-                <label for="email">Email </label>
+                <input 
+                type="email"  
+                id="email" 
+                name="email" 
+                required
+                placeholder="exemple@domaine.com"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            >
+            <label for="email">Email</label>
             </div>
             
             <button type="submit">
@@ -32,11 +40,7 @@
             Retoure a la page  <a href="connexion.html">connexion</a>
         </div>
 
-        <div class="social-login">
-            <div class="social-btn">📧</div>
-            <div class="social-btn">🔑</div>
-            <div class="social-btn">🛡️</div>
-        </div>
     </div>
+ </div>
 </body>
 </html>

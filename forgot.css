@@ -1,82 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(to right, #ff6b6b, #ff8e53);
-    --glass-bg: rgba(255, 255, 255, 0.95);
-    --shadow-lg: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --primary: #6a00ff;
+    --secondary: #8e2bff;
+    --dark-bg: #000000;
+    --light: #f8fafc;
+    --glass-effect: rgba(255, 255, 255, 0.05);
+
 }
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box ;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-} 
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
 
 body {
-    display: grid;
-    place-items: center;
+    background: var(--dark-bg);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    background: var(--primary-gradient);
-    background-attachment: fixed;
 }
-
-.container {
-    background: var(--glass-bg);
-    backdrop-filter : blur(16px);
-    padding: 3rem 2.5rem;
-    border-radius: 20px;
-    box-shadow: var(--shadow-lg);
-    width: 100%;
-    max-width: 480px;
+.base {
     position: relative;
+    border-radius: 20px;
+    padding: 50px;
+    transition: var(--transition);
+    cursor: pointer;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    border: 1px solid var(--light) ;
+    box-shadow:
+    0 15px 35px rgb(255, 255, 255), /* ظل خارجي */
+    inset 0 0 10px rgba(255, 255, 255, 0.3); /* ظل داخلي */
+    animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    transition: var(--transition);
+    animation: Mohamed 3s ease-in-out infinite;
 }
 
-.container::before {
+.base::before {
     content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: var(--secondary-gradient);
-    opacity: 0.1;
-    transform: rotate(-5deg);
-    z-index: -1;
+    background: conic-gradient(
+        transparent 20%,
+        var(--secondary) 50%,
+        transparent 80%
+    );
+    animation: rotate 4s linear infinite;
 }
 
+.base:hover {
+    transform: translateY(-10px);
+}
+
+
+.container {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 50px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes Mohamed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+
 h1 {
-    font-weight: 800;
-    font-size: 2rem;
-    background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--light);
     text-align: center;
     margin-bottom: 2rem;
-    letter-spacing: -0.5px;
+    font-size: 1.8em;
+    position: relative;
+
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--secondary);
+    margin: 1rem auto;
+    box-shadow: 0 0 10px var(--secondary);
 }
 
 .form-group {
-    margin-bottom: 2rem;
     position: relative;
+    margin-bottom: 2rem;
 }
 
 input {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
+    width: 400px;
+    padding: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 8px;
     font-size: 1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(255, 255, 255, 0.9);
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--light);
+    appearance: none;
 }
 
 input:focus {
+    border-color: var(--secondary);
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 4px 6px -1px rgba(102, 126, 234, 0.1), 0 2px 4px -1px rgba(102, 126, 234, 0.06);
-    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--primary);
+
 }
 
 label {
@@ -84,83 +134,52 @@ label {
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    color: #64748b;
+    color: rgb(254, 254, 254);
     pointer-events: none;
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    padding: 0 0.3rem;
 }
 
 input:focus ~ label,
-input:not(:placeholder-shown) ~ label {
+input:valid ~ label {
     top: -10px;
-    left: 0.5rem;
-    font-size: 0.8rem;
-    color: #667eea;
-    background: var(--glass-bg);
-    padding: 0 0.5rem;
+    left: 5px;
+    font-size: 12px;
+    color: var(--secondary);
 }
 
 button {
     width: 100%;
     padding: 1rem;
-    background: var(--primary-gradient);
-    color: white;
+    background: var(--secondary);
+    color: var(--light);
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     font-size: 1.1rem;
-    font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     position: relative;
     overflow: hidden;
 }
 
-button::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(45deg);
-    transition: all 0.5s ease;
-}
-
-button:hover::after {
-    left: 50%;
-    top: 50%;
-}
-
 button:hover {
+    background: var(--light);
+    color: var(--dark-bg);
+    box-shadow: 0 0 30px var(--secondary);
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-
-.success {
-    display: none;
-    text-align: center;
-    padding: 2rem;
-    background: rgba(72, 187, 120, 0.1);
-    border-radius: 12px;
-    border: 2px solid #48bb78;
-    margin-top: 1.5rem;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .loader {
-    display: none;
     width: 24px;
     height: 24px;
-    border: 3px solid #fff;
+    border: 3px solid var(--dark-bg);
     border-bottom-color: transparent;
     border-radius: 50%;
     animation: rotation 1s linear infinite;
-    margin: 0 auto;
+    display: none;
+    position: absolute;
+    left: 50%;
+    
+    transform: translateX(-50%);
 }
 
 @keyframes rotation {
@@ -168,49 +187,103 @@ button:hover {
     100% { transform: rotate(360deg); }
 }
 
+#resetForm {
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.success {
+    display: none;
+    padding: 1.5rem;
+    background: rgba(72, 187, 120, 0.1);
+    border: 2px solid #48bb78;
+    border-radius: 8px;
+    color: #48bb78;
+    margin-top: 1.5rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.terms {
+    text-align: center;
+    margin: 2rem 0;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.terms a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.terms a:hover {
+    text-shadow: 0 0 10px var(--secondary);
+}
+
+.social-login {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 480px) {
     .container {
+        padding: 2rem;
         margin: 1rem;
-        padding: 2rem 1.5rem;
     }
     
     h1 {
         font-size: 1.75rem;
     }
 }
-
-.terms {
-    font-size: 0.85rem;
-    color: #64748b;
-    text-align: center;
-    margin-top: 1.5rem;
+/* Style général pour tous les placeholders */
+::placeholder {
+    color: transparent;
 }
 
-.terms a {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 500;
+/* === Style spécifique pour l'email === */
+input[type="email"] {
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,0.6)'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 20px;
 }
 
-.social-login {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin: 2rem 0;
+/* Disparition du placeholder au focus/remplissage */
+input[type="email"]:focus::placeholder,
+input[type="email"]:not(:placeholder-shown)::placeholder {
+    opacity: 0;
+    transition: var(--transition);
 }
 
-.social-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #fff;
-    display: grid;
-    place-items: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+/* Style du label */
+input[type="email"]:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 5px;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    background: var(--dark-bg);
 }
 
-.social-btn:hover {
-    transform: translateY(-2px);
+/* Validation visuelle */
+input[type="email"]:valid {
+    border-color: var(--secondary);
+}
+
+input[type="email"]:invalid:not(:focus) {
+    border-color: rgb(255, 255, 255);
 }
