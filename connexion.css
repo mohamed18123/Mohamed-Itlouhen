@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+:root {
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --primary: #6a00ff;
+    --secondary: #8e2bff;
+    --dark-bg: #000000;
+    --light: #f8fafc;
+    --glass-effect: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--dark-bg);;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.base {
+    position: relative;
+    border-radius: 20px;
+    padding: 50px;
+    transition: var(--transition);
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid var(--light) ;
+    box-shadow: 
+    0 15px 35px rgb(255, 255, 255), /* ظل خارجي */
+    inset 0 0 10px rgba(255, 255, 255, 0.3); /* ظل داخلي */
+    animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    transition: var(--transition);
+    animation: Mohamed 3s ease-in-out infinite;
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes Mohamed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.base::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent 20%,
+        var(--secondary) 50%,
+        transparent 80%
+    );
+    animation: rotate 4s linear infinite;
+}
+
+.base:hover {
+    transform: translateY(-10px);
+}
+
+.connexion {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 50px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+
+h2 {
+    color: var(--light);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8em;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--secondary);
+    margin: 0.5rem auto;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 400px;
+    padding: 10px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--light);
+    appearance: none;
+}
+
+input:focus {
+    border-color: var(--secondary);
+    outline: none;
+    box-shadow: 0 0 15px var(--primary);
+}
+
+label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(254, 254, 254);
+    pointer-events: none;
+    transition: var(--transition);
+    padding: 0 0.3rem;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -10px;
+    left: 5px;
+    font-size: 12px;
+    color: var(--secondary);
+}
+
+.login-btn {
+    background: var(--secondary);
+    color: var(--light);
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 1rem;
+}
+
+.login-btn:hover {
+    color:var(--dark-bg);
+    background: var(--light);
+    box-shadow: 0 0 25px var(--secondary);
+    transform: scale(1.05);
+}
+
+.extra-links {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.extra-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.extra-links a:hover {
+    color: var(--secondary);
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+    .base {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .connexion {
+        padding: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+/* Style général pour tous les placeholders */
+::placeholder {
+    color: transparent;
+}
+
+/* === Style spécifique pour l'email === */
+input[type="email"] {
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,0.6)'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 20px;
+}
+
+/* Disparition du placeholder au focus/remplissage */
+input[type="email"]:focus::placeholder,
+input[type="email"]:not(:placeholder-shown)::placeholder {
+    opacity: 0;
+    transition: var(--transition);
+}
+
+/* Style du label */
+input[type="email"]:not(:placeholder-shown) ~ label {
+    top: -10px;
+    left: 5px;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    background: var(--dark-bg);
+}
+
+/* Validation visuelle */
+input[type="email"]:valid {
+    border-color: var(--secondary);
+}
+
+input[type="email"]:invalid:not(:focus) {
+    border-color: rgb(255, 255, 255);
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Questions</title>
+    <link rel="stylesheet" href="expr.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="expr.js"></script>
+</head>
+<body>
+    <div class="container">
+        <button class="btn-primary" onclick="showQuestionModal()">
+            <i class="fas fa-plus"></i> Ajouter Question
+        </button>
+
+        <!-- Modal de type de question -->
+        <div class="question-modal" id="questionModal">
+            <div class="question-editor">
+                <h3>Type de Question</h3>
+                <div class="type-selector">
+                    <button class="btn-type" onclick="createQuestion('qcm')">
+                        <i class="fas fa-list-ol"></i> QCM
+                    </button>
+                    <button class="btn-type" onclick="createQuestion('direct')">
+                        <i class="fas fa-pencil-alt"></i> Directe
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulaire QCM -->
+        <div class="question-editor" id="qcmForm" style="display: none;">
+            <h3>Nouvelle Question QCM</h3>
+            <div class="media-upload">
+                <input type="file" id="qcmMedia" accept="image/*, video/*, audio/*">
+            </div>
+            <textarea placeholder="Énoncé de la question" rows="3"></textarea>
+            
+            <div class="options-container" id="qcmOptions">
+                <div class="option-item">
+                    <input type="text" placeholder="Option 1">
+                    <input type="checkbox" class="correct-answer">
+                </div>
+            </div>
+            
+            <button class="btn-secondary" onclick="addOption()">
+                <i class="fas fa-plus"></i> Ajouter Option
+            </button>
+
+            <div class="question-settings">
+                <input type="number" placeholder="Note" step="0.5" min="0">
+                <input type="number" placeholder="Durée (secondes)" min="10">
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-primary" onclick="saveQuestion('qcm')">Enregistrer</button>
+                <button class="btn-cancel" onclick="cancelEdit()">Annuler</button>
+            </div>
+        </div>
+
+        <!-- Formulaire Question Directe -->
+        <div class="question-editor" id="directForm" style="display: none;">
+            <h3>Question Directe</h3>
+            <div class="media-upload">
+                <input type="file" id="directMedia" accept="image/*, video/*, audio/*">
+            </div>
+            <textarea placeholder="Énoncé de la question" rows="3"></textarea>
+            <input type="text" placeholder="Réponse attendue">
+            
+            <div class="tolerance-settings">
+                <label for="tolerance">Tolérance :</label>
+                <input type="range" 
+                       id="tolerance" 
+                       name="tolerance"
+                       min="0" 
+                       max="100" 
+                       value="10"
+                       aria-describedby="toleranceValue">
+                <span id="toleranceValue" aria-live="polite">10%</span>
+            </div>
+
+            <div class="question-settings">
+                <input type="number" placeholder="Note" step="0.5" min="0">
+                <input type="number" placeholder="Durée (secondes)" min="10">
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-primary" onclick="saveQuestion('direct')">Enregistrer</button>
+                <button class="btn-cancel" onclick="cancelEdit()">Annuler</button>
+            </div>
+        </div>
+
+        <!-- Liste des questions -->
+        <div class="question-list" id="questionList">
+            <!-- Les questions ajoutées apparaîtront ici -->
+            
+        </div>
+    </div>
+</body>
+</html>

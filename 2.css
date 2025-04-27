@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+:root {
+    --primary: #2563eb;
+    --teacher: #f1d70f;
+    --student: #f4663f;
+    --dark: #000000;
+    --light: #f8fafc;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --primary-color: #6a00ff;
+    --secondary-color: #8e2bff;
+    --dark-bg: #000000;
+    --glass-effect: rgba(255, 255, 255, 0.05);
+    --back-color: var(--b)
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-family: "Quicksand", sans-serif;
+    min-height: 100vh;
+    line-height: 1.5;
+    width: 100vw;
+    background-color: var(--dark-bg);
+    
+    color: rgb(255, 255, 255);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    animation: Mohamed 3s ease-in-out infinite;
+
+}
+
+@keyframes Mohamed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Navigation */
+.navbar{
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    color: #45159d;
+    margin: auto;
+    display :flex;
+    justify-content: space-between;
+    alig-items: center;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+.logo{
+    width: 100px;
+    margin-top: -20px;
+    filter: drop-shadow(0 0 10px rgba(106, 0, 255, 0.703));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(-50deg);
+}
+
+.navbar ul li {
+    list-style: none;
+    display:inline-block;
+    margin:20px;
+}
+.navbar ul li a {
+    text-transform: uppercase;
+    padding: 15px;
+    color:#fafafa;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    border-radius: 30px;
+    
+    text-decoration: none;
+}
+.navbar ul li a:hover {
+    background: var(--secondary-color);
+    box-shadow: 0 0 25px var(--primary-color);
+    transform: translateY(-3px);
+}
+/* acceuille Section */
+
+.acceuille {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+}
+
+.acceuille h1 {
+    font-size: 90px;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+}
+
+.acceuille p {
+    font-size: 30px;
+    margin: 0;
+    text-align: center;
+}
+
+
+/* Role Cards */
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 4rem 0;
+}
+
+.role-card {
+    background: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.role-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent 20%,
+        var(--secondary-color) 50%,
+        transparent 80%
+    );
+    animation: rotate 4s linear infinite;
+}
+
+.role-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.08);
+}
+
+.teacher-card {
+    border: 2px solid var(--teacher);
+}
+
+.student-card {
+    border: 2px solid var(--student);
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+    background: var(--dark);
+    padding: 2rem;
+    border-radius: 15px;
+    height: 100%;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.card-description {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+}
+
+.card-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.teacher-button {
+    background: var(--teacher);
+    color: var(--light);
+}
+
+.student-button {
+    background: var(--student);
+    color: var(--light);
+}
+
+@keyframes rotate {
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .acceuille h1 {
+        font-size: 2.5rem;
+    }
+    
+    .role-grid {
+        grid-template-columns: 1fr;
+    }
+}

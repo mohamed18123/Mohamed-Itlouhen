@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créateur d'Examens</title>
+    <link rel="stylesheet" href="espace ensignement .css">
+</head>
+<body>
+    <div class="animated-background"></div>
+    
+    <main class="container">
+        <!-- Section Création d'examen -->
+        <section class="card exam-creator">
+            <h2 class="heading-secondary">Créer un nouvel examen</h2>
+            
+            <form class="form">
+                <div class="form-group">
+                    <label class="form-label">Titre :</label>
+                    <input type="text" id="exam-title" class="form-control"> 
+                </div>
+                 
+                <div class="form-group">
+                    <label class="form-label">Description :</label>
+                    <textarea id="exam-description" class="form-control" rows="3"></textarea>
+                </div> 
+                
+                <div class="form-group">
+                    <label class="form-label">Public ciblé :</label>
+                    <input type="text" id="exam-audience" class="form-control">
+                </div>
+                
+                <button type="button" class="btn btn--primary" onclick="createExam()">
+                    Créer l'examen
+                </button>
+                
+                <div id="exam-link" class="exam-link" aria-live="polite"></div>
+            </form>
+        </section>
+
+        <!-- Section Éditeur de questions -->
+        <section class="card question-editor">
+            <header class="question-editor__header">
+                <h2 class="heading-secondary">Ajouter des questions</h2>
+                
+                <div class="question-type-toggle">
+                    <button type="button" 
+                            class="question-type-btn btn btn--primary active" 
+                            data-type="direct">
+                        Question directe
+                    </button>
+                    <button type="button" 
+                            class="question-type-btn btn btn--primary" 
+                            data-type="qcm">
+                        QCM
+                    </button>
+                </div>
+            </header>
+
+            <form class="form">
+                <!-- Énoncé -->
+                <div class="form-group">
+                    <label class="form-label">Énoncé :</label>
+                    <textarea id="question-text" class="form-control" rows="4"></textarea>
+                </div>
+
+                <!-- Média -->
+                <div class="form-group media-upload">
+                    <label class="form-label">Ajouter un média :</label>
+                    <input type="file" 
+                           id="media-upload" 
+                           class="form-control"
+                           accept="image/*, video/*, audio/*">
+                    <div class="media-upload__preview" id="media-preview"></div>
+                </div>
+
+                <!-- Question directe -->
+                <div id="direct-form" class="question-type-content">
+                    <div class="form-group">
+                        <label class="form-label">Réponse attendue :</label>
+                        <input type="text" id="direct-answer" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tolérance (%):</label>
+                        <input type="number" 
+                               id="tolerance" 
+                               class="form-control"
+                               min="0" 
+                               max="100" 
+                               value="25">
+                    </div>
+                </div>
+
+                <!-- QCM -->
+                <div id="qcm-form" class="question-type-content" hidden>
+                    <div class="qcm-options">
+                        <div id="options-container" class="options-list"></div>
+                        <button type="button" 
+                                class="btn btn--secondary"
+                                onclick="addOption()">
+                            Ajouter une option
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Paramètres communs -->
+                <div class="grid">
+                    <div class="form-group">
+                        <label class="form-label">Note :</label>
+                        <input type="number" 
+                               id="question-points" 
+                               class="form-control"
+                               min="0" 
+                               step="0.5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Durée (secondes) :</label>
+                        <input type="number" 
+                               id="question-duration" 
+                               class="form-control"
+                               min="10">
+                    </div>
+                </div>
+
+                <button type="button" 
+                        class="btn btn--primary"
+                        onclick="addQuestion()">
+                    Ajouter la question
+                </button>
+            </form>
+        </section>
+
+        <!-- Liste des questions -->
+        <section class="card questions-list">
+            <h2 class="heading-secondary">Questions ajoutées</h2>
+            <div id="questions-list" class="questions-grid"></div>
+        </section>
+    </main>
+
+    <script src="espace.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Inscription</title>
+    <link rel="stylesheet" href="connexion.css">
+</head>
+<body>
+    <div class="base">
+        <div class="connexion">
+            <h2>Connexion</h2>
+            <form>
+                <div class="form-group">
+                    <input 
+                        type="email"  
+                        id="email" 
+                        name="email" 
+                        required
+                        placeholder="exemple@domaine.com"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    >
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Mot de passe</label>
+                </div>
+
+                <button type="submit" class="login-btn">login</button>
+                
+                <div class="extra-links">
+                    <a href="#">Forgot Password?</a>
+                    <a href="inscri.html">Create Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

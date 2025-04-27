@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réinitialisation VIP</title>
+    <link rel="stylesheet" href="forgot.css">
+    <script src="forgot.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Réinitialisation Mot de passe</h1>
+        
+        <form id="resetForm">
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder=" ">
+                <label for="email">Email </label>
+            </div>
+            
+            <button type="submit">
+                <span class="btn-text">Continuer</span>
+                <div class="loader"></div>
+            </button>
+        </form>
+
+        <div class="success" id="successMessage">
+            <p>✅ Instructions envoyées avec succès</p>
+            <p class="terms">Consultez votre boîte de réception et dossier spam</p>
+        </div>
+
+        <div class="terms">
+            Retoure a la page  <a href="connexion.html">connexion</a>
+        </div>
+
+        <div class="social-login">
+            <div class="social-btn">📧</div>
+            <div class="social-btn">🔑</div>
+            <div class="social-btn">🛡️</div>
+        </div>
+    </div>
+</body>
+</html>

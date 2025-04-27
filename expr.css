@@ -1,0 +1,330 @@
+/* Variables CSS */
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a52cc;
+    --secondary: #06d6a0;
+    --danger: #ef476f;
+    --background: #f8f9fa;
+    --text: #2b2d42;
+    --border: #dee2e6;
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    --radius-lg: 1rem;
+    --radius-md: 0.5rem;
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Reset et styles de base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    background-color: var(--background);
+    color: var(--text);
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  
+  /* Conteneur principal */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  /* Boutons */
+  button {
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: var(--shadow);
+  }
+  
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary {
+    background: var(--secondary);
+    color: white;
+  }
+  
+  .btn-danger {
+    background: var(--danger);
+    color: white;
+  }
+  
+  .btn-cancel {
+    background: transparent;
+    color: var(--danger);
+    border: 2px solid var(--danger);
+  }
+  
+  /* Modals */
+  .question-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px);
+  }
+  
+  .question-editor {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 600px;
+    margin: 1rem;
+    transform: scale(0.95);
+    animation: modalEnter 0.3s ease forwards;
+  }
+  
+  @keyframes modalEnter {
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Formulaires */
+  textarea,
+  input[type="text"],
+  input[type="number"],
+  input[type="file"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    margin: 0.5rem 0;
+    transition: var(--transition);
+    font-size: 1rem;
+  }
+  
+  textarea:focus,
+  input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+  }
+  
+  .media-upload {
+    border: 2px dashed var(--border);
+    padding: 1.5rem;
+    text-align: center;
+    margin: 1rem 0;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  
+  .media-upload:hover {
+    border-color: var(--primary);
+    background: rgba(67, 97, 238, 0.05);
+  }
+  
+  /* Options QCM */
+  .options-container {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .option-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.75rem;
+    background: white;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--border);
+    transition: var(--transition);
+  }
+  
+  .option-item:hover {
+    transform: translateX(5px);
+    border-color: var(--primary);
+  }
+  
+  .correct-answer {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--secondary);
+  }
+  
+  /* Tolérance */
+  .tolerance-settings {
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  input[type="range"] {
+    flex-grow: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    -webkit-appearance: none;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  /* Liste des questions */
+  .question-list {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .question-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .question-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+  }
+  
+  .question-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .question-actions button {
+    padding: 0.5rem;
+    background: none;
+    color: var(--text);
+    opacity: 0.7;
+  }
+  
+  .question-actions button:hover {
+    opacity: 1;
+    color: var(--primary);
+  }
+  
+  /* Notifications */
+  .notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+    color: white;
+    box-shadow: var(--shadow);
+    animation: slideIn 0.3s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .success {
+    background: var(--secondary);
+  }
+  
+  .error {
+    background: var(--danger);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    body {
+      padding: 1rem;
+    }
+  
+    .question-editor {
+      padding: 1.5rem;
+      margin: 0.5rem;
+    }
+  
+    .type-selector {
+      flex-direction: column;
+    }
+  
+    .btn-type {
+      width: 100%;
+    }
+  
+    .question-settings {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .question-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .question-card {
+    animation: fadeIn 0.3s ease;
+  }

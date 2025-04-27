@@ -1,0 +1,133 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: #6a00ff;
+    --secondary-color: #8e2bff;
+    --dark-bg: #000000;
+    --glass-effect: rgba(255, 255, 255, 0.05);
+    --back-color: var(--b)
+    
+    
+}
+body {
+    font-family: "Quicksand", sans-serif;
+    min-height: 100vh;
+    line-height: 1.5;
+    width: 100vw;
+    background-color: var(--dark-bg);
+    
+    color: rgb(255, 255, 255);
+   
+}
+
+
+.banner {
+    position: relative;
+    z-index: 2;
+}
+
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+.navbar{
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    color: #45159d;
+    margin: auto;
+    display :flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    width: 100px;
+    margin-top: -20px;
+    filter: drop-shadow(0 0 10px rgba(106, 0, 255, 0.703));
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(-50deg);
+}
+
+.navbar ul li {
+    list-style: none;
+    display:inline-block;
+    margin:20px;
+}
+.navbar ul li a {
+    text-transform: uppercase;
+    padding: 15px;
+    color:#fafafa;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-transform: uppercase;
+    border-radius: 30px;
+    
+    text-decoration: none;
+}
+.navbar ul li a:hover {
+    background: var(--secondary-color);
+    box-shadow: 0 0 25px var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.designe{
+color: #4f14bd;
+
+}
+.content {
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh; 
+    margin: 0;
+    animation: Mohamed 3s ease-in-out infinite;
+    z-index: 3; /* Doit être supérieur au robot */
+}
+
+@keyframes Mohamed {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.content h1 {
+    font-size: 90px;
+    font-weight: 800;
+    margin: 0;
+    text-align: center;
+}
+
+.content p {
+    font-size: 30px;
+    margin: 0;
+    text-align: center;
+}
+.logo{
+    display: flex;
+} 
+
+.robot {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    z-index: 1;
+    width: 60vw;
+    height: 60vh;
+     /* Désactive les interactions */
+    
+}
+
+
