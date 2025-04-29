@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification Email</title>
+    <link rel="stylesheet" href="verifivation email.css">
+</head>
+<body>
+    <div class="verification-box">
+        <h2>Vérification par Code</h2>
+        <p>Entrez le code reçu par email</p>
+        
+        <div class="code-inputs">
+            <input type="text" class="code-input" maxlength="1">
+            <input type="text" class="code-input" maxlength="1">
+            <input type="text" class="code-input" maxlength="1">
+            <input type="text" class="code-input" maxlength="1">
+            <input type="text" class="code-input" maxlength="1">
+            <input type="text" class="code-input" maxlength="1">
+        </div>
+
+        <button onclick="verifyCode()">Vérifier</button>
+        <p class="timer">Temps restant : <span id="countdown">15:00</span></p>
+        <p class="error" id="error-message"></p>
+        <p class="success" id="success-message"></p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('userId');
+
+        // Gestion des inputs
+        const inputs = document.querySelectorAll('.code-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+            
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && index > 0 && !e.target.value) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Compte à rebours
+        let timeLeft = 900; // 15 minutes en secondes
+        const countdown = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                document.getElementById('countdown').textContent = 'Expiré';
+                return;
+            }
+            
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('countdown').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            timeLeft--;
+        }, 1000);
+
+        async function verifyCode() {
+            const code = Array.from(inputs).map(i => i.value).join('');
+            
+            try {
+                const response = await fetch('http://localhost:3000/verify-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, code })
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('success-message').textContent = result.message;
+                    window.location.href = 'connexion.html';
+                } else {
+                    document.getElementById('error-message').textContent = result.error;
+                }
+            } catch (err) {
+                document.getElementById('error-message').textContent = 'Erreur de connexion';
+            }
+        }
+    </script>
+    <script src="verifivation email.js"></script>
+</body>
+</html>

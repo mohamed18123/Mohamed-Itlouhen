@@ -79,5 +79,18 @@
     </div>
     <script src="inscri.js"></script>
     <form action="http://localhost:3000/inscription" method="POST"></form>
+    <script>
+        // Dans votre fichier inscri.html
+fetch('/inscription', {
+    method: 'POST',
+    // ...
+})
+.then(response => response.json())
+.then(data => {
+    if (data.userId) {
+        window.location.href = `verification.html?userId=${data.userId}`;
+    }
+});
+    </script>
 </body>
 </html>
